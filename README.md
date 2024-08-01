@@ -28,9 +28,10 @@ This project demonstrates how to analyze transaction data to gain meaningful ins
 ## Transaction Analysis
 ### Objectives
 1- Compute a Data Warehouse (DWH) table for transactions. For each user transaction, calculate the number of transactions the user had within the previous seven days.
+2- In case the query planner is not good enough, convert SQL to Python code. 
 
-### SQL Query
-```schema
+### Schema
+```
    CREATE TABLE transactions (
         transaction_id UUID,
         date DATE,
