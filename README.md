@@ -25,25 +25,22 @@ This project demonstrates how to analyze transaction data to gain meaningful ins
     ```
 3. Ensure you have the necessary CSV files (`transactions.csv` and `users.csv`) in the repository directory.
 
-## SQL Query for Transaction Analysis
-### Objective
-Compute a Data Warehouse (DWH) table for transactions. For each user transaction, calculate the number of transactions the user had within the previous seven days.
+## Transaction Analysis
+### Objectives
+1- Compute a Data Warehouse (DWH) table for transactions. For each user transaction, calculate the number of transactions the user had within the previous seven days.
 
 ### SQL Query
-```sql
-SELECT 
-    t1.transaction_id,
-    t1.user_id,
-    t1.date,
-    COUNT(t2.transaction_id) AS no_txn_last_7days
-FROM 
-    transactions t1
-LEFT JOIN 
-    transactions t2 
-ON 
-    t1.user_id = t2.user_id 
-    AND t2.date BETWEEN t1.date - INTERVAL '7 DAY' AND t1.date - INTERVAL '1 DAY'
-GROUP BY 
-    t1.transaction_id, t1.user_id, t1.date
-ORDER BY 
-    t1.user_id, t1.date;
+```schema
+   CREATE TABLE transactions (
+        transaction_id UUID,
+        date DATE,
+        user_id UUID,
+        is_blocked BOOL,
+        transaction_amount INTEGER,
+        transaction_category_id INTEGER
+);
+   CREATE TABLE users (
+        user_id UUID,
+        is_active BOOLEAN
+   ); ```
+
